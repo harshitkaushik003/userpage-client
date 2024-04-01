@@ -12,7 +12,7 @@ function App() {
     ]}
   ])
   return (
-    <div className="App">
+    <div className="relative w-screen h-screen">
       <Provider store={store}>
         <RouterProvider router={router}/>
       </Provider>
