@@ -37,11 +37,7 @@ const Home = () => {
                         <input onChange={handleSearch} ref={inpRef} className="appearance-none w-4/5 h-4/5 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500" type="text" placeholder="Search by name" />
                         <button onClick={handleSearch} className='w-28 h-8 ml-4 bg-blue-400 text-white rounded-sm shadow-sm hover:bg-blue-700'>Search</button>
                     </div>
-                    {/* <div className='w-full h-full flex flex-col items-center mt-2 overflow-scroll divide-y'>
-                        {users.map((item, index) => (
-                            <Card key={index} item={item} index={index} />
-                        ))}
-                    </div> */}
+                    
                     <Outlet />
                     <div className="pagination-bar mb-10 w-full h-10 flex justify-center">
                         {Array.from({ length: totalPages }, (_, i) => (

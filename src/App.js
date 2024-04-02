@@ -6,6 +6,10 @@ import {Provider} from 'react-redux';
 import { store } from './Redux/store';
 import AddUser from './Pages/AddUser';
 import User from './Pages/User';
+import Team from './Pages/Team';
+import TeamDetails from './components/TeamDetails';
+import TeamList from './components/TeamList';
+import TeamUser from './components/TeamUser';
 
 function App() {
   const router = createBrowserRouter([
@@ -15,6 +19,12 @@ function App() {
           {path:'add-user', element: <AddUser/>}
         ]}
         
+      ]},
+      {path: '/team', element:<Team/>, children:[
+        {path: '', element: <TeamList/>},
+        {path: ':id', element: <TeamDetails/>, children:[
+          {path: 'add-user', element: <TeamUser/>}
+        ]}
       ]}
     ]}
   ])
