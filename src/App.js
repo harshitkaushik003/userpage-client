@@ -29,7 +29,7 @@ function App() {
     ]}
   ])
   return (
-    <div className="relative w-screen h-screen overflow-hidden sm:overflow-scroll">
+    <div className="relative w-screen h-screen overflow-hidden">
       <Provider store={store}>
         <RouterProvider router={router}/>
       </Provider>

@@ -33,7 +33,7 @@ const Filters = () => {
                     <option value={true}>Yes</option>
                     <option value={false}>No</option>
                 </select>
-                <button onClick={handleFilters} className='w-full md:w-52 sm:w-10 h-10 shadow-lg rounded-sm bg-purple-500 text-white mb-4 md:mb-10'>Apply Filters</button>
+                <button onClick={handleFilters} className=' w-full md:w-52 sm:w-10 h-10 shadow-lg rounded-sm bg-purple-500 text-white mb-4 md:mb-10'>Apply Filters</button>
                 <button onClick={handleReset} className='w-full md:w-52 h-10 shadow-lg rounded-sm bg-purple-500 text-white'>Reset Filters</button>
             </div>
         </>
