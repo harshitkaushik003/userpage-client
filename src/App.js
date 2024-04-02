@@ -5,11 +5,13 @@ import Home from './Pages/Home';
 import {Provider} from 'react-redux';
 import { store } from './Redux/store';
 import AddUser from './Pages/AddUser';
+import User from './Pages/User';
 
 function App() {
   const router = createBrowserRouter([
     {path: '/', element: <Navbar/>, children: [
       {path:'/', element: <Home/>, children:[
+        {index:true, element: <User/>},
         {path:'add-user', element: <AddUser/>}
       ]}
     ]}

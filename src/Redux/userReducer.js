@@ -1,12 +1,13 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 const initialState = {
-    users: []
+    users: [],
+    totalPages: 1
 }
 
-export const getInitialState = createAsyncThunk('user/get', async ()=>{
-    const response = await axios.get("http://localhost:8000/user");
-    return response.data.data;
+export const getInitialState = createAsyncThunk('user/get', async (page)=>{
+    const response = await axios.get(`http://localhost:8000/user?page=${page}`);
+    return response.data;
 })
 
 export const getSearchResults = createAsyncThunk('user/search', async (arg1)=>{
@@ -35,7 +36,8 @@ const userSlice = createSlice({
     reducers:{},
     extraReducers: (builder)=>{
         builder.addCase(getInitialState.fulfilled, (state, action)=>{
-            state.users = action.payload; 
+            state.users = action.payload.data;
+            state.totalPages = action.payload.totalPages; 
         }).addCase(getSearchResults.fulfilled, (state, action)=>{
             state.users = action.payload;
         }).addCase(applyFilters.fulfilled, (state, action)=>{
