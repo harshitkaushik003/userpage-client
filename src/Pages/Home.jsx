@@ -1,26 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Card from '../components/Card';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getInitialState, getSearchResults, userSelector } from '../Redux/userReducer';
+import { getSearchResults, userSelector } from '../Redux/userReducer';
 import Filters from '../components/Filters';
 import { Link, Outlet } from 'react-router-dom';
 
 const Home = () => {
-    const { users, totalPages } = useSelector(userSelector);
+    const { totalPages } = useSelector(userSelector);
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         dispatch(getInitialState());
-    //     }
-    //     fetchData();
-    // }, [dispatch]);
 
     const inpRef = useRef(null);
 
     function handleSearch() {
-        const searchTerm = inpRef.current.value.trim();
+        const searchTerm = inpRef.current.value;
         dispatch(getSearchResults(searchTerm));
     }
 
@@ -54,7 +46,7 @@ const Home = () => {
                     <div className="pagination-bar mb-10 w-full h-10 flex justify-center">
                         {Array.from({ length: totalPages }, (_, i) => (
                           <Link to={`?page=${i+1}`}>
-                            <button key={i + 1} onClick={() => handlePageChange(i + 1)} className={`pagination-button ${currentPage === i+1 ? 'bg-blue-400' : 'bg-white'} ml-20 mt-2 w-10 h-10 border-2 rounded-sm`}>
+                            <button key={i + 1} onClick={() => handlePageChange(i + 1)} className={`pagination-button ${currentPage === i+1 ? 'bg-blue-600' : 'bg-white'} ml-20 mt-2 w-10 h-10 border-2 rounded-sm`}>
                                 {i + 1}
                             </button>
                           </Link>

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { applyFilters } from '../Redux/userReducer';
+import { applyFilters, getInitialState } from '../Redux/userReducer';
 
 const Filters = () => {
     const dispatch = useDispatch();
@@ -16,8 +16,8 @@ const Filters = () => {
     function handleReset(){
         domainRef.current.value = null;
         genderRef.current.value = null;
-        availRef.current.value = availRef.current.getElementsByTagName('option')[0].value;
-        handleFilters();
+        availRef.current.value = null;
+        dispatch(getInitialState(1));
 
     }
   return (
@@ -29,7 +29,7 @@ const Filters = () => {
         <input ref={domainRef} type="text" placeholder='domain' className='rounded-sm pl-3 w-52 h-7 mb-10 border-2'/>
         <input ref={genderRef} type="text" placeholder='gender' className='rounded-sm pl-3 w-52 h-7 mb-10 border-2'/>
         <select ref={availRef} name="" id="" className='rounded-sm pl-2 w-52 h-7 border-2'>
-            <option value={null} disabled selected>Select Availability</option>
+            <option value={''} selected>Select Availability</option>
             <option value={true}>Yes</option>
             <option value={false}>No</option>
         </select>

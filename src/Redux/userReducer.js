@@ -17,7 +17,8 @@ export const getSearchResults = createAsyncThunk('user/search', async (arg1)=>{
 
 export const applyFilters = createAsyncThunk('user/filters', async(args)=>{
     const response = await axios.get(`http://localhost:8000/user?domain=${args.arg1}&gender=${args.arg2}&available=${args.arg3}`);
-    return response.data.data;
+    console.log(response);
+    return response.data;
 })
 
 export const AddNewData = createAsyncThunk('user/add', async(userData)=>{
@@ -41,7 +42,8 @@ const userSlice = createSlice({
         }).addCase(getSearchResults.fulfilled, (state, action)=>{
             state.users = action.payload;
         }).addCase(applyFilters.fulfilled, (state, action)=>{
-            state.users = action.payload;
+            state.users = action.payload.data;
+            state.totalPages = action.payload.page
         }).addCase(AddNewData.fulfilled, (state, action)=>{
             state.users.unshift(action.payload);
         })

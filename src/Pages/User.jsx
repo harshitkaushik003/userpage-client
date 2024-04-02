@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Card from '../components/Card'
 import { useDispatch, useSelector } from 'react-redux';
 import { getInitialState, userSelector } from '../Redux/userReducer';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 
 const User = () => {
@@ -22,11 +22,15 @@ const User = () => {
 
 
   return (
+    <>
     <div className='w-full h-full flex flex-col items-center mt-2 overflow-scroll divide-y'>
         {users.map((item, index) => (
             <Card key={index} item={item} index={index} />
         ))}
-    </div>  
+    </div>
+    <Outlet/>
+    </>
+    
   )
 }
 
