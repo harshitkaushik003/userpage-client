@@ -6,12 +6,12 @@ const initialState = {
 }
 
 export const getInitialTeam = createAsyncThunk('team/get', async ()=>{
-    const response = await axios.get('http://localhost:8000/team');
+    const response = await axios.get('https://userpage-api.onrender.com/team');
     return response.data.data;
 })
 
 export const addNewTeam = createAsyncThunk('team/add', async (userData)=>{
-    const response = await axios.post('http://localhost:8000/team', userData, {
+    const response = await axios.post('https://userpage-api.onrender.com/team', userData, {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         }
@@ -21,7 +21,7 @@ export const addNewTeam = createAsyncThunk('team/add', async (userData)=>{
 })
 
 export const addUserToTeam = createAsyncThunk('team/add-user', async (args)=>{
-    const response = await axios.post(`http://localhost:8000/team/${args.id}/add/${args.userId}`);
+    const response = await axios.post(`https://userpage-api.onrender.com/team/${args.id}/add/${args.userId}`);
     getInitialTeam();
     return response.data.message;
 })

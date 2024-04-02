@@ -6,23 +6,23 @@ const initialState = {
 }
 
 export const getInitialState = createAsyncThunk('user/get', async (page)=>{
-    const response = await axios.get(`http://localhost:8000/user?page=${page}`);
+    const response = await axios.get(`https://userpage-api.onrender.com/user?page=${page}`);
     return response.data;
 })
 
 export const getSearchResults = createAsyncThunk('user/search', async (arg1)=>{
-    const response = await axios.get(`http://localhost:8000/user?search=${arg1}`);
+    const response = await axios.get(`https://userpage-api.onrender.com/user?search=${arg1}`);
     return response.data.data;
 })
 
 export const applyFilters = createAsyncThunk('user/filters', async(args)=>{
-    const response = await axios.get(`http://localhost:8000/user?domain=${args.arg1}&gender=${args.arg2}&available=${args.arg3}`);
+    const response = await axios.get(`https://userpage-api.onrender.com/user?domain=${args.arg1}&gender=${args.arg2}&available=${args.arg3}`);
     console.log(response);
     return response.data;
 })
 
 export const AddNewData = createAsyncThunk('user/add', async(userData)=>{
-    const response = await axios.post("http://localhost:8000/user", userData, {
+    const response = await axios.post("https://userpage-api.onrender.com/user", userData, {
         headers:{
             'Content-Type' : 'application/x-www-form-urlencoded'
         }
