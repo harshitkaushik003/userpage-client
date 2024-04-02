@@ -19,6 +19,16 @@ export const applyFilters = createAsyncThunk('user/filters', async(args)=>{
     return response.data.data;
 })
 
+export const AddNewData = createAsyncThunk('user/add', async(userData)=>{
+    const response = await axios.post("http://localhost:8000/user", userData, {
+        headers:{
+            'Content-Type' : 'application/x-www-form-urlencoded'
+        }
+    });
+    console.log(response.data);
+    return response.data.data;
+})
+
 const userSlice = createSlice({
     name: 'users',
     initialState: initialState,
@@ -30,6 +40,8 @@ const userSlice = createSlice({
             state.users = action.payload;
         }).addCase(applyFilters.fulfilled, (state, action)=>{
             state.users = action.payload;
+        }).addCase(AddNewData.fulfilled, (state, action)=>{
+            state.users.unshift(action.payload);
         })
     }
 });

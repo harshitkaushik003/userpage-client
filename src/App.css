@@ -13,3 +13,7 @@
     font-optical-sizing: auto;
     color: gray;
 }
+
+.close:hover .closeImg{
+    visibility: visible;
+}

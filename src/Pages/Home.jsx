@@ -3,6 +3,7 @@ import Card from '../components/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import {getInitialState, getSearchResults, userSelector } from '../Redux/userReducer';
 import Filters from '../components/Filters';
+import { Link, Outlet } from 'react-router-dom';
 const Home = () => {
     
     const {users} = useSelector(userSelector);
@@ -27,14 +28,17 @@ const Home = () => {
     }
 
   return (
-    <div className='home w-full flex mt-4'>
+    <div className='home w-full flex mt-4 relative'>
       <div className='w-72 bg-white flex flex-col'>
         <Filters/>
       </div>
       <div className='w-full  flex flex-col  items-center bg-slate-100'>
         <div className='w-full h-16 flex justify-between items-center px-8'>
           <span className='text-2xl font-sans'>USERS</span>
-          <button className='w-28 h-10 bg-blue-400 text-white rounded-sm shadow-sm hover:bg-blue-700'>Add User</button>
+          <Link to={'/add-user'}>
+            <button className='w-28 h-10 bg-blue-400 text-white rounded-sm shadow-sm hover:bg-blue-700'>Add User</button>
+          </Link>
+          
         </div>
         <div className='relative main rounded-md flex flex-col pt-4'>
           <div className='w-full h-10 flex justify-center'>
@@ -46,6 +50,7 @@ const Home = () => {
               <Card key={index} item={item} index={index}/>
             ))}
           </div>
+          <Outlet/>
         </div>
       </div>
     </div>
